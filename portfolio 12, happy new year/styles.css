@@ -1,0 +1,111 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #00d0ff;
+}
+.box
+{
+    position: relative;
+    height: 200px;
+    transform-style: preserve-3d;
+    animation: animate 16s linear infinite;
+}
+@keyframes animate 
+{
+    0%
+    {
+        transform: rotateX(-20deg) rotateY(360deg);
+    }   
+    100%
+    {
+        transform: rotateX(-20deg) rotateY(0deg);
+    }  
+}
+.box div
+{
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+}
+.box div.block span
+{
+    position: absolute;
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 100px;
+    background: #eaff00;
+    box-shadow: 0 0 25px #eaff00;
+    box-shadow: 0 0 25px #ffc800;
+    transform: rotateY(calc(90deg * var(--i))) translateZ(100px);
+}
+.box:hover div.block span
+{
+    background: #00ff08;
+    box-shadow: 0 0 25px #00ff08;
+    box-shadow: 0 0 25px #ff0055;
+    filter: (0 0 50px green);
+}
+.box div.text span
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
+    cursor: pointer;
+    color: #FFF;
+    font-size: 6em;
+    font-weight: 1000;
+    z-index: 10;
+    line-height: 1em;
+    -webkit-text-stroke: 3px #f6cccc;
+    transform-style: preserve-3d;
+}
+
+.box div.text span:nth-child(1)
+{
+    font-size: 6em;
+}
+.box div.text span::before
+{
+    content: attr(data-text);
+    position: absolute;
+    bottom: 7px;
+    transform-origin: bottom;
+    transform: rotateX(-90deg) translateY(-50px) translateZ(50px);
+    color: rgba(0, 0, 0, 0.1);
+    filter: blur(3px);
+}
+.box div.text span::after
+{
+    content:"";
+    position: absolute;
+    top: 125px;
+    width: 360px;
+    height: 60px;
+    background: #eaff00;
+    box-shadow: 0 0 25px #eaff00;
+    box-shadow: 0 0 25px #eaff00;
+    transform: translateY(-50px);
+    transform: rotateX(-90deg);
+transition: 0.5s;
+}
+.box:hover div.text span::after
+{
+    background: #00ff08;
+    box-shadow: 0 0 25px #00ff08;
+    box-shadow: 0 0 25px #00ff11;
+    filter: (0 0 50px green);
+}
+
